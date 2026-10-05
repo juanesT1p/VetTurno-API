@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import com.huellitas.vetturno.dto.VeterinarioRequest;
 import com.huellitas.vetturno.dto.VeterinarioResponse;
@@ -18,6 +19,7 @@ import com.huellitas.vetturno.service.VeterinarioService;
 
 @RestController
 @RequestMapping("/api/veterinarios")
+@SecurityRequirement(name = "bearerAuth")
 public class VeterinarioController {
 
     private final VeterinarioService service;

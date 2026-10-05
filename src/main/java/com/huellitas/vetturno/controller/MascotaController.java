@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import com.huellitas.vetturno.dto.MascotaRequest;
 import com.huellitas.vetturno.dto.MascotaResponse;
@@ -18,6 +19,7 @@ import com.huellitas.vetturno.service.MascotaService;
 
 @RestController
 @RequestMapping("/api/mascotas")
+@SecurityRequirement(name = "bearerAuth")
 public class MascotaController {
 
     private final MascotaService service;

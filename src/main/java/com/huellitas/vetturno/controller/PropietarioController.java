@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import com.huellitas.vetturno.dto.PropietarioRequest;
 import com.huellitas.vetturno.dto.PropietarioResponse;
@@ -18,6 +19,7 @@ import com.huellitas.vetturno.service.PropietarioService;
 
 @RestController
 @RequestMapping("/api/propietarios")
+@SecurityRequirement(name = "bearerAuth")
 public class PropietarioController {
 
     private final PropietarioService service;

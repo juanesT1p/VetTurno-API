@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import com.huellitas.vetturno.dto.CitaRequest;
 import com.huellitas.vetturno.dto.CitaResponse;
@@ -19,6 +20,7 @@ import com.huellitas.vetturno.service.CitaService;
 
 @RestController
 @RequestMapping("/api/citas")
+@SecurityRequirement(name = "bearerAuth")
 public class CitaController {
 
     private final CitaService service;
