@@ -1,0 +1,4 @@
+spring.datasource.url=jdbc:mysql://localhost:3306/vetturno
+spring.datasource.username=usuario_ejemplo
+spring.datasource.password=contrasena_ejemplo
+app.jwt.secret=clave-jwt-de-ejemplo-con-al-menos-32-caracteres
