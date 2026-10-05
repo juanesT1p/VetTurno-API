@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 import com.huellitas.vetturno.dto.PropietarioRequest;
 import com.huellitas.vetturno.dto.PropietarioResponse;
 import com.huellitas.vetturno.service.PropietarioService;
@@ -25,7 +27,7 @@ public class PropietarioController {
     }
 
     @PostMapping
-    public ResponseEntity<PropietarioResponse> crear(@RequestBody PropietarioRequest request) {
+    public ResponseEntity<PropietarioResponse> crear(@Valid @RequestBody PropietarioRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.crear(request));
     }
 

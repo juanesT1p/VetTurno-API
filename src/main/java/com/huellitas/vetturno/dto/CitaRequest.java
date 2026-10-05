@@ -2,11 +2,26 @@ package com.huellitas.vetturno.dto;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class CitaRequest {
 
+    @NotNull(message = "La fecha y hora son obligatorias")
+    @Future(message = "La cita debe estar en el futuro")
     private LocalDateTime fechaHora;
+
+    @NotBlank(message = "El motivo es obligatorio")
     private String motivo;
+
+    @NotNull(message = "La mascota es obligatoria")
+    @Positive(message = "La mascota debe ser válida")
     private Long mascotaId;
+
+    @NotNull(message = "El veterinario es obligatorio")
+    @Positive(message = "El veterinario debe ser válido")
     private Long veterinarioId;
 
     public LocalDateTime getFechaHora() {

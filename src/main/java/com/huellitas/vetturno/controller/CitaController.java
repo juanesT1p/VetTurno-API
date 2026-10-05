@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 import com.huellitas.vetturno.dto.CitaRequest;
 import com.huellitas.vetturno.dto.CitaResponse;
 import com.huellitas.vetturno.service.CitaService;
@@ -26,7 +28,7 @@ public class CitaController {
     }
 
     @PostMapping
-    public ResponseEntity<CitaResponse> crear(@RequestBody CitaRequest request) {
+    public ResponseEntity<CitaResponse> crear(@Valid @RequestBody CitaRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.crear(request));
     }
 

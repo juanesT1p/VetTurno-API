@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 import com.huellitas.vetturno.dto.MascotaRequest;
 import com.huellitas.vetturno.dto.MascotaResponse;
 import com.huellitas.vetturno.service.MascotaService;
@@ -25,7 +27,7 @@ public class MascotaController {
     }
 
     @PostMapping
-    public ResponseEntity<MascotaResponse> crear(@RequestBody MascotaRequest request) {
+    public ResponseEntity<MascotaResponse> crear(@Valid @RequestBody MascotaRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.crear(request));
     }
 
