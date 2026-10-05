@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,19 +17,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-import com.huellitas.vetturno.repository.UsuarioRepository;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final UsuarioRepository usuarioRepository;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final SecurityErrorHandler securityErrorHandler;
 
-    public SecurityConfig(UsuarioRepository usuarioRepository, JwtAuthenticationFilter jwtAuthenticationFilter,
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
                           SecurityErrorHandler securityErrorHandler) {
-        this.usuarioRepository = usuarioRepository;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.securityErrorHandler = securityErrorHandler;
     }
@@ -38,16 +33,6 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> usuarioRepository.findByUsername(username)
-                .map(usuario -> User.withUsername(usuario.getUsername())
-                        .password(usuario.getPassword())
-                        .roles(usuario.getRol().name())
-                        .build())
-                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
     }
 
     @Bean
